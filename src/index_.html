@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>POCKET PHONE</title>
+	<link rel="stylesheet" href="css/webappcss.css">
+	<link rel="stylesheet" href="css/style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+  		
+
+
+
+  <script src="phonegap.js"></script>
+  <script type="text/javascript" src="PushNotification.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+
+
+	
+  <link rel="stylesheet" href="css/OpenSans.css">
+  <link rel="stylesheet" href="css/Oswald.css">
+  <link href='css/Lobster.css' rel='stylesheet' type='text/css'>
+	<!--<script src="js/jquery-1.3.2.min.js" type="text/javascript"></script>-->
+	<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>-->
+
+<!--------- GALERIA RESPONSIVE (SUCURSALES) ------- -->
+  <link rel="stylesheet" href="css/responsiveslides.css">
+  <link rel="stylesheet" href="css/demo.css">
+  <!--<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>-->
+  <script src="js/jquery.min.js"></script>
+
+
+
+<!------------------------------------------	PROGRAMACION MAPA		------------------------- -->
+
+<!--<script async defer src="https://maps.googleapis.com/maps/api/js?key=API_KEY&callback=initMap">    </script>-->
+<!--<script src="http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAUnJY3ChJhF0YgyTSDJuVfBTqu-zEVMNfNVaqfAe9FKyfKhfBExSs9LrIQ7GOuBeSnaddg05sRmEBxQ"
+	type="text/javascript"></script>
+<script src="http://napplex.com/app/scriptmapagral.php"></script>-->
+
+<style>
+	.gm-style-iw {overflow: visible !important;}
+	.gm-style-iw div{overflow: visible !important;}
+</style>
+
+<!------------------------------------------	FIN DE PROGRAMACION MAPA		------------------------- -->
+
+
+
+
+<script type="text/javascript" charset="utf-8">
+
+    // Call onDeviceReady when Cordova is loaded.
+    //
+    // At this point, the document has loaded but cordova-x.x.x.js has not.
+    // When Cordova is loaded and talking with the native device,
+    // it will call the event `deviceready`.
+    //
+    function onLoadBTNatras() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    // Cordova is loaded and it is now safe to call Cordova methods
+    //
+    function onDeviceReady() {
+        // Register the event listener
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
+    // Handle the back button
+    //
+	function onBackKeyDown(){
+		var atrasbut = document.getElementById('atras').className;
+		if(atrasbut == "atras icon-leftarrow"){			despejar()	}
+		else if(atrasbut == "atras icon-leftarrow opc1"){	atras();		}
+		else if(atrasbut == "atras icon-leftarrow opc2"){	banneritemgrallista();		}
+		else if(atrasbut == "atras icon-leftarrow opc3"){	atras2();		}	
+		else if(atrasbut == "atras icon-leftarrow opc4"){	atras3();		}	
+		else if(atrasbut == "atras icon-leftarrow opc5"){	atras4();		}	
+	}
+
+	function onLoadinicio(){
+		onLoadBTNatras();//Boton atras
+		checkConnection();//Saber si existe coneccion de internet
+		//navigator.geolocation.getCurrentPosition(onSuccess, onError);
+		//$.mobile.defaultPageTransition = "none"
+	    //$.mobile.defaultDialogTransition = 'none';
+	    //$.mobile.useFastClick = true; 
+	    //$.mobile.touchOverflowEnabled = true; 
+	}
+    </script>
+
+
+
+
+    </head> 
+    <body >
+
+
+
+
+	
+
+
+
+	
+
+<div class="pantallainicio" id="pantallainicio">
+	<img src="images/logopocket.svg" width="90%" alt="" class="centrado margincin">
+</div>
+
+
+
+
+
+	
+
+<div class="menuinicio" id="menuinicio" style="opacity:1;">
+		<a class="icoinicio" onclick="categorias()"><img src="images/directorio.svg" width="70%" alt="" class="centrado margdi">Directorio</a>
+		<a class="icoinicio" onclick="verpromocionesgral()"><img src="images/promociones.svg" width="70%" alt="" class="centrado margdi">Promociones</a>
+		<a class="icoinicio" onclick='verlista("link=1")'><img src="images/express.svg" width="70%" alt="" class="centrado margdi">Express</a>
+		<a class="icoinicio" onclick='verlista("id=9999")'><img src="images/emergencias.svg" width="70%" alt="" class="centrado margdi">Emergencias</a>
+		<a class="icoinicio" onclick="vermapagral()"><img src="images/mapa.svg" width="70%" alt="" class="centrado margdi">Mapa</a>
+		<a class="icoinicio" onclick='verlista("link=2")'><img src="images/domicilio.svg" width="70%" alt="" class="centrado margdi">A Domicilio</a>
+</div>	
+
+
+
+
+
+<div id="cuerpo">
+	<div class="cuerpoloading" id="cuerpoloading"><img src="images/loader01.gif" alt="" id="loading"></div>	
+	<div id="cuerpo2"></div>
+	<div id="cuerpo3"></div>
+	<div id="cuerpo4"></div>
+</div>
+
+
+<div id="mapagrande">Mapa</div>
+
+
+
+
+<div id="promocionesgral"></div> 
+
+
+<div id="promocionesitem"></div>
+
+<div id="calendario"></div>
+
+
+<div id="contactenos">
+	<div class="contacto_tit">CONTACTO</div>
+	<div class="contacto_tit2">DIRECCIÓN</div>
+	<div class="contacto_txt">Calle Sahuaripa Esq. Paseo de los Jardines, Col Valle Grande</div>
+	<div class="contacto_tit2">TELÉFONO / MAIL</div>
+	<div class="contacto_txt">
+		<a href="tel:+546623128035" class="contact_phone">(662) 312-80-35</a> <br>
+		<a href="mailto:creativo@pocketphone.com.mx" class="contact_mail">creativo@pocketphone.com.mx</a>
+		</div>
+	<div class="contacto_tit2">HORARIOS DE ATENCIÓN</div>
+	<div class="contacto_txt">9:0AM-7:00PM<br>Lunes a Viernes</div>
+</div>
+
+<div id="termi"></div>
+
+
+<div id="menuruedita" style="left:-102%;"> 
+	<div class="rueditaboton" onclick="" id="registro_sorteos">Mi Cuenta</div>
+	<div class="rueditaboton " onclick="calendario()">Calendario de Eventos</div>
+	<div class="rueditaboton " onclick="verlista('link=3')">Ultimas Notificaciones</div>
+	<div class="rueditaboton btnred" onclick="categorias()">Directorio</div>
+	<div class="rueditaboton" onclick="compras()" style="display:none;" id="miscomprasboton">Mis Compras</div>
+	<div class="rueditaboton " onclick="contacto()">Contactenos</div>
+	<div class="rueditaboton" onclick="termi()">Terminos y Condiciones</div>
+</div>
+
+<div id="calendario"></div>
+
+
+<div id="menucategorias" style="left:-100%;"></div>
+
+
+<div id="menubuscar" style="top:0;">
+	<div class="buscarboton">
+				<form  method="post"  name="buscarform" id="buscarform"  autocomplete="off"> 
+					<input type='button' class='submitbtn'   onclick="buscarreg()"/>
+					<input type="input" name="buscar" id="buscar" class="buscartxt" placeholder="Buscar...">
+				</form>
+	</div>
+</div>
+
+<nav class="nav">
+	<div class="atras icon-leftarrow" id="atras" onclick="despejar()"></div>
+	<div class="logoimg111a"><img src="images/logopocket.svg" alt="" class="logoimg111" onclick="despejar()"></div>
+	<div class="ruedita icon-search" onclick="menubuscar()"></div>
+	<div id="botonruedita" class="icon-ruedita" onclick="menuruedita()"></div>
+</nav>
+
+
+<div id="misplatos"></div>
+
+<p id="geolocationlat" style="display:none;"></p>
+<p id="geolocationlong" style="display:none;"></p>
+<p id="identificadorunico" style="display:none;"></p>
+
+
+
+<footer>
+<div id="banner"></div>
+</footer>
+
+
+
+
+        <div id="app" class="app" style="display:none;">           
+            <div id="deviceready" class="blink"> 
+                <p class="event listening"><!--Connecting to Device--></p> 
+                <p class="event received"><!--Device is Ready--></p> 
+            </div>          
+        	<!--<iframe src="http://napplex.com/app/formreg.php" frameborder="0" id="Regframe"></iframe>-->
+
+        	<div id="mensajereg"></div>
+			<div id="formreg_i"></div>
+           
+        </div> 
+
+
+
+<div id="avisopopentrante" style="display:none;">
+	<div class="popentrante_tit0">Aviso!</div>
+	<div id="popentrante_tit">... Esta en PHOCKE PHONE</div>
+	<button type="button" onclick="" id="verahobutton">Ver Ahora</button> 
+	<button type="button" onclick="verdesnuepop();" id="verdesbutt">Lo vere despues</button> 
+</div>
+
+
+<div id="avisopopentrante_promo" style="display:none;">
+	<div class="popentrante_tit0">Aviso!</div>
+	<div id="popentrante_tit2">... Esta en PHOCKE PHONE</div>
+	<button type="button" onclick="" id="verahobutton2">Ver Ahora</button> 
+	<button type="button" onclick="verdesnuepop2();" id="verdesbutt2">Lo vere despues</button> 
+</div>
+
+
+
+<div id="registro_sorteos_div" style="display:none;">
+	<div id="registro_sorteosform"></div>
+</div>
+ 
+    
+
+<script type="text/javascript"> 
+
+function banner_rot() {
+      var e = document.getElementById("watchme");
+      e.addEventListener("animationstart", listener, false);
+      e.addEventListener("animationend", listener, false);
+      e.addEventListener("animationiteration", listener, false);
+      
+      e.className = "slidein";
+    }
+
+
+function micuenta(idg,idboton){
+		
+	despejar0();
+
+	document.getElementById("menuinicio").style.opacity = "0";
+	document.getElementById("menuinicio").style.display = "none";
+	document.getElementById("registro_sorteos_div").style.display = "block";
+
+		var linkvm1 = 'http://napplex.com/app/regsor.php?regId=' + idg + '&id=' + idboton;
+		$("#registro_sorteosform").load(linkvm1);
+		document.getElementById("registro_sorteos_div").style.opacity = "1";
+
+}
+
+
+	function objetoAjax(){
+		var xmlhttp = false;
+		try {
+			xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
+		} catch (e) {
+
+			try {
+				xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+			} catch (E) {
+				xmlhttp = false; }
+		}
+
+		if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
+		  xmlhttp = new XMLHttpRequest();
+		}
+		return xmlhttp;
+	}
+
+
+function enviarDatos(){
+        //Recogemos los valores introducimos en los campos de texto
+		name = document.formulario_reg.name.value;
+		email = document.formulario_reg.email.value;
+		//genero = document.formulario_reg.genero.value;
+		edad = document.formulario_reg.edad.value;
+		regId = document.formulario_reg.regId.value;
+		for (i=0;i<document.formulario_reg.genero.length;i++){ 
+	      	if (document.formulario_reg.genero[i].checked) 
+	         	genero = document.formulario_reg.genero[i].value;
+	   	} 
+         //Aquí será donde se mostrará el resultado
+		mensajereg = document.getElementById('mensajereg');
+		//instanciamos el objetoAjax
+		ajax = objetoAjax();
+		//Abrimos una conexión AJAX pasando como parámetros el método de envío, y el archivo que realizará las operaciones deseadas
+		ajax.open("POST", "http://napplex.com/push/register.php", true);
+
+		//cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
+		ajax.onreadystatechange = function() {
+	             //Cuando se completa la petición, mostrará los resultados 
+				if (ajax.readyState == 4){
+					//El método responseText() contiene el texto de nuestro 'consultar.php'. Por ejemplo, cualquier texto que mostremos por un 'echo'
+					mensajereg.value = (ajax.responseText); 
+				}
+		} 
+		//Llamamos al método setRequestHeader indicando que los datos a enviarse están codificados como un formulario. 
+		ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+		//enviamos las variables a 'consulta.php' 
+		ajax.send("&name=" + name + "&email=" + email + "&genero=" + genero + "&edad=" + edad + "&regId=" + regId);
+		document.getElementById("formreg_i").style.display = "none";
+		var linkvm7 = 'http://napplex.com/app/mensajedegracias.php';
+        $("#mensajereg").load(linkvm7);
+        document.getElementById("app").style.display = "none";
+} 
+
+function enviarDatos2(){
+        //Recogemos los valores introducimos en los campos de texto
+		email = document.formulario2_reg.email.value;
+		regId = document.formulario2_reg.regId.value;
+         //Aquí será donde se mostrará el resultado
+		mensajereg = document.getElementById('mensajereg');
+		//instanciamos el objetoAjax
+		ajax = objetoAjax();
+		//Abrimos una conexión AJAX pasando como parámetros el método de envío, y el archivo que realizará las operaciones deseadas
+		ajax.open("POST", "http://napplex.com/push/register.php", true);
+		//cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
+		ajax.onreadystatechange = function() {
+	             //Cuando se completa la petición, mostrará los resultados 
+				if (ajax.readyState == 4){
+					//El método responseText() contiene el texto de nuestro 'consultar.php'. Por ejemplo, cualquier texto que mostremos por un 'echo'
+					mensajereg.value = (ajax.responseText); 
+				}
+		} 
+		//Llamamos al método setRequestHeader indicando que los datos a enviarse están codificados como un formulario. 
+		ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded"); 
+		//enviamos las variables a 'consulta.php' 
+		ajax.send("&email=" + email + "&regId=" + regId);
+		document.getElementById("app").style.display = "none";
+} 
+
+
+
+
+
+		function tufuncion(){
+			document.getElementById("app").style.display = "none";
+			//document.getElementById("app").style.background = "#FF0000";
+		}
+		function tufuncion2(){
+			document.getElementById("app").style.display = "block";
+			//document.getElementById("app").style.background = "#FFFFFF";
+		}
+
+
+
+  function registrar(){         	
+            //var nombre = document.getElementById('name').value; 
+            var email = document.getElementById('email').value; 
+            //var telefono = document.getElementById('telefono').value; 
+            var regId = document.getElementById('regId').value; 
+            if (regId != "") { 
+                if (email != "") { 
+                    //Enviamos los datos al servidor php 
+                    document.formulario_reg.submit(); 
+                } 
+                else{alert('Ingrese un nombre y un correo para el registro en la base de datos.')} 
+            } 
+            else 
+                {alert('Esperando el regId del registro en GCM!');} 
+        } 
+   
+        function registrar2(){ 
+            var regId = document.getElementById('regId2').value; 
+            if (regId != "") { 
+                document.formulario2_reg.submit(); 
+            } 
+            else 
+                {alert('Esperando el regId del registro en GCM!');} 
+        } 
+
+
+
+
+
+function verahopop0_promo(id){
+	verdesnuepop2();
+	verahopop_promo(id);
+}
+function verahopop_promo(id){
+	verpromocionesgral();
+	var linke_reg = 'id=' + id;
+	banneritemgral(linke_reg);
+	document.getElementById("cuerpo3").style.display = "none";	
+	document.getElementById("cuerpo4").style.display = "none";
+	document.getElementById("cuerpo2").style.display = "none";
+	document.getElementById("cuerpo").style.display = "none";
+}
+
+
+function verahopop0(id){
+	verdesnuepop();
+	var idboton = id;
+	nuevo_regfn(idboton);
+
+	//var txt = 'id: '+idboton;
+	//alert(txt);
+}
+
+function verdesnuepop(){
+	document.getElementById("avisopopentrante").style.display = "none";	
+	document.getElementById("verahobutton").onclick="";
+	document.getElementById("popentrante_tit").innerHTML="";
+}
+function verdesnuepop2(){
+	document.getElementById("avisopopentrante_promo").style.display = "none";	
+	document.getElementById("verahobutton2").onclick="";
+	document.getElementById("popentrante_tit2").innerHTML="";
+}
+
+
+
+function nuevo_regfn(idboton){// a donde te envia en la burbuja fuera de la app luego de darle click
+	window.scrollTo(0,0);
+
+	document.getElementById("mapagrande").style.display = "none";
+	document.getElementById("promocionesgral").style.display = "none";
+	document.getElementById("promocionesitem").style.display = "none";
+	document.getElementById("calendario").style.display = "none";
+	document.getElementById("contactenos").style.display = "none";
+	document.getElementById("termi").style.display = "none";
+	document.getElementById("app").style.display = "none";
+
+	document.getElementById("cuerpo").style.display = "block";
+	document.getElementById("cuerpo").style.opacity = "1";
+	capa = $("#cuerpoloading");
+	    capa.animate({
+		      "opacity": "1"
+		   }, 300);
+	    capa.show(500);
+	window.scrollTo(0,0);	
+
+	document.getElementById("cuerpo").style.zIndex = "1";
+	document.getElementById("menuinicio").style.opacity = "0";
+
+	$("#menucategorias").animate({left: '-100%'});
+	$("#menuruedita").animate({left: '-100%'});
+
+	document.getElementById("cuerpo4").innerHTML="";
+		document.getElementById("cuerpoloading").style.opacity = "1";
+		document.getElementById("menuinicio").style.opacity = "0";
+		document.getElementById("cuerpoloading").style.display = "block";
+
+		document.getElementById("cuerpo2").style.display = "none";	
+		document.getElementById("cuerpo3").style.display = "block";	
+		document.getElementById("cuerpo4").style.display = "none";	
+
+	    var js = "atras();";
+	    document.getElementById("atras").setAttribute("onclick", js);
+	    document.getElementById('atras').className = "atras icon-leftarrow";
+
+		var linkvm = 'http://napplex.com/app/vermas2.php?id=' + idboton;
+		$("#cuerpo3").load(linkvm);
+		//alert(linkvm);
+}
+ 
+
+
+
+
+function compras(){
+
+	document.getElementById("mapagrande").style.display = "none";
+	document.getElementById("promocionesgral").style.display = "none";
+	document.getElementById("promocionesitem").style.display = "none";
+	document.getElementById("calendario").style.display = "none";
+	document.getElementById("contactenos").style.display = "none";
+	document.getElementById("termi").style.display = "none";
+	document.getElementById("cuerpo3").style.display = "none";	
+	document.getElementById("cuerpo4").style.display = "none";
+	$("#menuruedita").animate({left: '-102%'});
+	var elDivin = document.getElementById("menuinicio"); //se define la variable "elDiv" igual a nuestro div
+      var valoractualin = elDivin.style.opacity;
+	      if(valoractualin == '1'){	      	
+			  capa = $("#menuinicio");
+			    capa.animate({
+				      "opacity": "0"
+				   }, 1000);
+	      }
+
+	document.getElementById("misplatos").style.display = "block";
+	document.getElementById("misplatos").style.opacity = "1";
+      var iduuid = document.getElementById("identificadorunico").innerHTML;  
+		var linkvm2 = 'http://napplex.com/app/misplatos.php?id=' + iduuid;
+		$("#misplatos").load(linkvm2);
+
+}
+
+
+
+
+function banneritemgral(link){
+
+	document.getElementById("promocionesgral").style.display = "none";
+	document.getElementById("promocionesitem").style.display = "block";
+
+	var linkvm = 'http://napplex.com/app/promocionesitem.php?' + link;
+	$("#promocionesitem").load(linkvm);
+
+	window.scrollTo(0,0);
+	  capa = $("#promocionesitem");
+	    capa.animate({
+		      "opacity": "1"
+		   }, 1000);
+
+	var js = "banneritemgrallista();";
+	document.getElementById("atras").setAttribute("onclick", js);
+	document.getElementById('atras').className = "atras icon-leftarrow opc2";
+}
+
+
+
+function banneritemgrallista(){
+
+	document.getElementById("promocionesgral").style.display = "block";
+	document.getElementById("promocionesitem").style.display = "none";
+	window.scrollTo(0,0);
+
+
+	  capa = $("#promocionesgral");
+	    capa.animate({
+		      "opacity": "1"
+		   }, 1000);
+
+	var js = "despejar();";
+	document.getElementById("atras").setAttribute("onclick", js);
+	document.getElementById('atras').className = "atras icon-leftarrow";
+}
+
+
+
+
+
+
+function menuruedita(){
+
+      var elDiv = document.getElementById("menucategorias"); //se define la variable "elDiv" igual a nuestro div
+      var valoractual = elDiv.style.left;
+	      if(valoractual != '-100%'){
+	      	$("#menucategorias").animate({left: '-100%'});
+	      };
+
+      var elDiv2 = document.getElementById("menuruedita"); //se define la variable "elDiv" igual a nuestro div
+      var valoractual2 = elDiv2.style.left;
+	      if(valoractual2 == '-102%' || valoractual2 == '-100%'){
+	      	$("#menuruedita").animate({left: '0'});
+	      }else{
+	      	$("#menuruedita").animate({left: '-102%'});
+	      };
+}
+
+
+
+function menubuscar(){
+
+      var elDiv = document.getElementById("menucategorias"); //se define la variable "elDiv" igual a nuestro div
+      var valoractual = elDiv.style.left;
+	      if(valoractual != '-100%'){
+	      	$("#menucategorias").animate({left: '-100%'});
+	      };
+
+      var elDiv2 = document.getElementById("menubuscar"); //se define la variable "elDiv" igual a nuestro div
+      var valoractual2 = elDiv2.style.top;
+	      if(valoractual2 == '59px'){
+	      	$("#menubuscar").animate({top: '0'});
+	      	document.buscarform.buscar.placeholder = "Buscar..." 
+	      }else{
+	      	$("#menubuscar").animate({top: '59px'});
+	      };
+}
+
+
+function verlista(link){
+	document.getElementById("mapagrande").style.display = "none";
+	document.getElementById("promocionesgral").style.display = "none";
+	document.getElementById("promocionesitem").style.display = "none";
+	document.getElementById("calendario").style.display = "none";
+	document.getElementById("contactenos").style.display = "none";
+	document.getElementById("termi").style.display = "none";
+	document.getElementById("cuerpo3").style.display = "none";	
+	document.getElementById("cuerpo4").style.display = "none";
+
+	document.getElementById("cuerpo").style.display = "block";
+	document.getElementById("cuerpo").style.opacity = "1";
+	capa = $("#cuerpoloading");
+	    capa.animate({
+		      "opacity": "1"
+		   }, 300);
+	    capa.show(500);
+	window.scrollTo(0,0);
+	
+
+	document.getElementById("cuerpo2").style.display = "block";
+	document.getElementById("cuerpo2").innerHTML="";
+	document.getElementById("cuerpo").style.zIndex = "1";
+	document.getElementById("menuinicio").style.opacity = "0";
+
+
+	$("#menucategorias").animate({left: '-100%'});
+	$("#menuruedita").animate({left: '-100%'});
+
+	var linkvm = 'http://napplex.com/app/vermas.php?' + link;
+	$("#cuerpo2").load(linkvm);
+
+	//var x = document.getElementById("myDIV");
+	var y = document.getElementsByClassName("classoc1");
+	var i;
+	for (i = 0; i < y.length; i++) {
+	  y[i].style.display = "none";
+	}
+
+}
+
+
+
+
+function vermapagral(){
+
+	//
+
+	document.getElementById("promocionesgral").style.display = "none";
+	document.getElementById("promocionesitem").style.display = "none";
+	document.getElementById("calendario").style.display = "none";
+	document.getElementById("contactenos").style.display = "none";
+	document.getElementById("termi").style.display = "none";
+	document.getElementById("cuerpo3").style.display = "none";	
+	document.getElementById("cuerpo4").style.display = "none";
+
+	document.getElementById("mapagrande").style.display = "block";
+	window.scrollTo(0,0);
+	  capa = $("#mapagrande");
+	    capa.animate({
+		      "opacity": "1"
+		   }, 1000);
+	document.getElementById("mapagrande").style.zIndex = "1";
+	document.getElementById("menuinicio").style.opacity = "0";
+
+	$("#menucategorias").animate({left: '-100%'});
+
+document.getElementById("banneritem").style.display = "none";
+	var y = document.getElementsByClassName("classoc1");
+	var i;
+	for (i = 0; i < y.length; i++) {
+	  y[i].style.display = "none";
+	}
+
+}
+
+
+function calendario(){
+
+	despejar0();
+
+	document.getElementById("calendario").style.display = "block";
+	window.scrollTo(0,0);
+	  capa = $("#calendario");
+	    capa.animate({
+		      "opacity": "1"
+		   }, 1000);
+	document.getElementById("calendario").style.zIndex = "1";
+	document.getElementById("menuinicio").style.opacity = "0";
+
+
+	document.getElementById("banneritem").style.display = "none";
+
+	var y = document.getElementsByClassName("classoc1");
+	var i;
+	for (i = 0; i < y.length; i++) {
+	  y[i].style.display = "none";
+	}
+
+}
+
+
+
+
+
+
+function contacto(){
+
+	despejar0();
+
+	document.getElementById("contactenos").style.display = "block";
+	window.scrollTo(0,0);
+	  capa = $("#contactenos");
+	    capa.animate({
+		      "opacity": "1"
+		   }, 1000);
+	document.getElementById("contactenos").style.zIndex = "1";
+	document.getElementById("menuinicio").style.opacity = "0";
+
+
+
+	document.getElementById("banneritem").style.display = "none";
+	var y = document.getElementsByClassName("classoc1");
+	var i;
+	for (i = 0; i < y.length; i++) {
+	  y[i].style.display = "none";
+	}
+
+
+}
+
+function termi(){
+	
+	despejar0();
+
+	document.getElementById("termi").style.display = "block";
+	window.scrollTo(0,0);
+	  capa = $("#termi");
+	    capa.animate({
+		      "opacity": "1"
+		   }, 1000);
+	document.getElementById("termi").style.zIndex = "1";
+	document.getElementById("menuinicio").style.opacity = "0";
+
+	
+
+
+	document.getElementById("banneritem").style.display = "none";
+	var y = document.getElementsByClassName("classoc1");
+	var i;
+	for (i = 0; i < y.length; i++) {
+	  y[i].style.display = "none";
+	}
+
+
+}
+
+
+
+
+function verpromocionesgral(){
+
+	document.getElementById("promocionesgral").style.display = "block";
+	window.scrollTo(0,0);
+	  capa = $("#promocionesgral");
+	    capa.animate({
+		      "opacity": "1"
+		   }, 1000);
+	document.getElementById("promocionesgral").style.zIndex = "1";
+	document.getElementById("menuinicio").style.opacity = "0";
+
+	$("#menucategorias").animate({left: '-100%'});
+
+
+	document.getElementById("banneritem").style.display = "none";
+	var y = document.getElementsByClassName("classoc1");
+	var i;
+	for (i = 0; i < y.length; i++) {
+	  y[i].style.display = "none";
+	}
+
+}
+
+function atras(){	
+
+	$("#menubuscar").animate({top: '0'});
+	document.getElementById("banneritem").style.display = "block";
+		document.getElementById("cuerpo2").style.display = "block";	
+		document.getElementById("cuerpo3").style.display = "none";	
+		document.getElementById("cuerpo4").style.display = "none";	
+
+	    var js = "despejar();";
+	    document.getElementById("atras").setAttribute("onclick", js);
+	    document.getElementById('atras').className = "atras icon-leftarrow";
+
+	  $("#menucategorias").animate({left: '-100%'});     
+	  $("#menuruedita").animate({left: '-100%'});
+}
+
+function atras2(){	
+	$("#menubuscar").animate({top: '0'});
+		document.getElementById("cuerpo2").style.display = "none";	
+		document.getElementById("cuerpo3").style.display = "block";	
+		document.getElementById("cuerpo4").style.display = "none";	
+
+	    var js = "atras();";
+	    document.getElementById("atras").setAttribute("onclick", js);
+	    document.getElementById('atras').className = "atras icon-leftarrow opc1";
+
+	  $("#menucategorias").animate({left: '-100%'});     
+	  $("#menuruedita").animate({left: '-100%'});
+}
+
+
+
+function atras3(){	
+	window.scrollTo(0,0);
+	document.getElementById("mensajeatrasmenu").style.display = "block";
+}
+
+function iratras3(){	
+	$("#menubuscar").animate({top: '0'});
+		document.getElementById("cuerpo2").style.display = "none";	
+		document.getElementById("cuerpo3").style.display = "block";	
+		document.getElementById("cuerpo4").style.display = "none";	
+
+	    var js = "atras();";
+	    document.getElementById("atras").setAttribute("onclick", js);
+	    document.getElementById('atras').className = "atras icon-leftarrow opc1";
+
+	  $("#menucategorias").animate({left: '-100%'});     
+	  $("#menuruedita").animate({left: '-100%'});
+
+	  pedidototal.length=0;
+}
+function atras4(){	
+		
+		document.getElementById("elcuerpodelmenu").style.display = "block";
+		document.getElementById("pedidolistadogral").style.display = "none";
+		document.getElementById("menu_totales_list").style.display = "block";
+
+	    var js = "atras3();";
+	    document.getElementById("atras").setAttribute("onclick", js);
+	    document.getElementById('atras').className = "atras icon-leftarrow opc4";
+
+}
+
+
+
+
+
+ function menu(id, tipo){
+
+      var elDiv = document.getElementById(id); //se define la variable "elDiv" igual a nuestro div
+      var valoractual = elDiv.style.display;
+
+      var mnuprinc = document.getElementById("menuinicio");
+	  mnuprinc.style.opacity='0';
+
+	  var i;
+ 	  var y = document.getElementsByClassName("seccionitem3");
+ 	  if(tipo == '1' && valoractual == 'none'){
+		  for (i = 0; i < y.length; i++) {
+		  	y[i].style.display = "none";
+		  }
+ 	  }
+
+ 	  var w = document.getElementsByClassName("seccionitem5");
+ 	  if(tipo < '3' && valoractual == 'none'){
+		  for (i = 0; i < w.length; i++) {
+		  w[i].style.display = "none";
+	  	  }
+	  }
+
+	      if(valoractual == 'none'){
+	      	elDiv.style.display='block'; //damos un atributo display:none que oculta el div 
+	      	//elDiv.fadeIn(1000);    	
+	      }else{
+	      	elDiv.style.display='none'; //damos un atributo display:none que oculta el div     	
+	      }
+      
+ }
+
+
+
+ 	function buscarreg(){
+ 		var formulario = document.buscarform;
+
+	    if (formulario.buscar.value == null || formulario.buscar.value.length == 0 || /^\s*$/.test(formulario.buscar.value)){	        
+	        document.buscarform.buscar.placeholder = "Busqueda Vacia!!" 
+	    }else{
+	    	var valorb = formulario.buscar.value;
+	    	var linkb = 'buscar=' + valorb;
+	    	verlista(linkb);
+	    	$("#menuruedita").animate({left: '-100%'});
+	    }
+ 	}
+
+ 
+
+
+  function categorias(){
+	$("#menuruedita").animate({left: '-100%'});
+	$("#menubuscar").animate({top: '0'});
+      var elDiv = document.getElementById("menucategorias"); //se define la variable "elDiv" igual a nuestro div
+      var valoractual = elDiv.style.left;
+	      if(valoractual == '-100%'){
+	      	$("#menucategorias").animate({left: '0'});
+	      }else{
+	      	$("#menucategorias").animate({left: '-100%'});
+	      }
+      
+ }
+
+
+function despejar(){
+	despejar0();
+	elinicioaparece();
+}
+
+
+   function despejar0(){
+	document.getElementById('atras').className = "atras icon-leftarrow";
+	$("#menubuscar").animate({top: '0'});
+   	window.scrollTo(0,0);
+   	document.getElementById("banneritem").style.display = "block";
+	var y = document.getElementsByClassName("classoc1");
+	var i;
+	for (i = 0; i < y.length; i++) {
+	  y[i].style.display = "none";
+	}
+
+
+	  $("#menucategorias").animate({left: '-100%'});     
+	  $("#menuruedita").animate({left: '-100%'});
+
+
+	document.getElementById("promocionesgral").style.display = "none";
+	document.getElementById("contactenos").style.display = "none";
+	document.getElementById("calendario").style.display = "none";
+	document.getElementById("promocionesitem").style.display = "none";
+	document.getElementById("termi").style.display = "none";
+
+	document.getElementById("mapagrande").style.display = "none";
+	document.getElementById("promocionesgral").style.display = "none"; 
+	  document.getElementById("cuerpo").style.zIndex = "0";
+	  document.getElementById("mapagrande").style.zIndex = "0";
+	  document.getElementById("promocionesgral").style.zIndex = "0";
+
+		document.getElementById("cuerpo").style.opacity = "0";	
+		document.getElementById("cuerpo").style.display = "none";
+		document.getElementById("mapagrande").style.opacity = "0";	
+		document.getElementById("promocionesgral").style.opacity = "0";	
+
+		document.getElementById("menuinicio").style.display = "block";
+		document.getElementById("cuerpo2").style.display = "block";	
+		document.getElementById("cuerpo3").style.display = "none";	
+		document.getElementById("cuerpo4").style.display = "none";	
+		document.getElementById("app").style.display = "none";	
+		document.getElementById("avisopopentrante").style.display = "none";		
+		document.getElementById("registro_sorteos_div").style.display = "none";	
+
+	}
+
+
+function elinicioaparece(){
+	  var elDivin = document.getElementById("menuinicio"); //se define la variable "elDiv" igual a nuestro div
+      var valoractualin = elDivin.style.opacity;
+	      if(valoractualin == '0'){	      	
+			  capa = $("#menuinicio");
+			    capa.animate({
+				      "opacity": "1"
+				   }, 1000);
+	      }
+
+	//pedidototal.length=0;
+ }
+
+  
+	
+	function aliniciarlaapp() {
+	//$(document).ready(function() {
+		
+	    ////////////////////////	geolocalisacion
+	    // Wait for device API libraries to load
+	    //
+	    //document.addEventListener("deviceready", onDeviceReady, false);// lo saque porque esta en index.js
+
+	    // device APIs are available
+	    //
+	    /*function onDeviceReady() {
+	        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	    }*/
+
+	    // onSuccess Geolocation
+	    //
+	    function onSuccess(position) {
+	        var element = document.getElementById('geolocationlat');
+	        var element2 = document.getElementById('geolocationlong');
+	        var element3 = document.getElementById('identificadorunico');
+	        /*element.innerHTML = 'Device Model: '    + device.model    + '<br />' +
+	                            'Device Cordova: '  + device.cordova  + '<br />' +
+	                            'Device Platform: ' + device.platform + '<br />' +
+	                            'Device name: '     + device.name     + '<br />' +
+	                            'Device UUID: '     + device.uuid     + '<br />' +
+	                            'Device Version: '  + device.version  + '<br /><br />' +
+	        					'Latitude: '          + position.coords.latitude         + '<br />' +
+	                            'Longitude: '         + position.coords.longitude        + '<br />' +
+	                            'Altitude: '          + position.coords.altitude         + '<br />' +
+	                            'Accuracy: '          + position.coords.accuracy         + '<br />' +
+	                            'Altitude Accuracy: ' + position.coords.altitudeAccuracy + '<br />' +
+	                            'Heading: '           + position.coords.heading          + '<br />' +
+	                            'Speed: '             + position.coords.speed            + '<br />' +
+	                            'Timestamp: '         + position.timestamp               + '<br />';*/
+	        element.innerHTML = position.coords.latitude;
+	        element2.innerHTML = position.coords.longitude;
+	        element3.innerHTML = device.uuid;
+	    }
+
+	        // onError Callback receives a PositionError object
+	        //
+	        function onError(error) {
+	           // alert('code: '    + error.code    + '\n' +
+	             //     'message: ' + error.message + '\n');
+	        }
+	        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+	    /////////////////////7 FIN GEO
+		//load1();
+		//loadScript("http://napplex.com/app/scriptmapagral.php");
+		//loadScript("http://maps.google.com/maps?file=api&v=2&key=ABQIAAAAUnJY3ChJhF0YgyTSDJuVfBTqu-zEVMNfNVaqfAe9FKyfKhfBExSs9LrIQ7GOuBeSnaddg05sRmEBxQ");
+
+
+		var linkvm1 = 'http://napplex.com/app/menu.php';
+		$("#menucategorias").load(linkvm1);
+
+		var linkvm2 = 'http://napplex.com/app/banner.php';
+		$("#banner").load(linkvm2);
+
+		var linkvm3 = 'http://napplex.com/app/promociones.php';
+		$("#promocionesgral").load(linkvm3);
+
+		var linkvm4 = 'http://napplex.com/app/calendario.php';
+		$("#calendario").load(linkvm4);
+
+		var linkvm5 = 'http://napplex.com/app/termi.php';
+		$("#termi").load(linkvm5);
+
+		var linkvm7 = 'http://napplex.com/app/mapagral.php';
+		$("#mapagrande").load(linkvm7);
+
+		
+
+
+
+	    capa = $("#pantallainicio");
+	    capa.animate({
+		      "opacity": "0.99"
+		   }, 4000);
+	    capa.animate({
+		      "opacity": "0"
+		   }, 500);
+	    capa.hide(500);
+	//});
+};
+
+
+        //El registro al servicio de google lo hacemos automáticamente 
+        app.initialize(); 
+        /*function registrar(){ // La puse mas arriba
+            var nombre = document.getElementById('name').value; 
+            var email = document.getElementById('email').value; 
+            var regId = document.getElementById('regId').value; 
+            if (regId != "") { 
+                if (nombre != "" && email != "") { 
+                    //Enviamos los datos al servidor php 
+                    document.formulario.submit(); 
+                } 
+                else{alert('Ingrese un nombre y un correo para el registro en la base de datos.')} 
+            } 
+            else 
+                {alert('Esperando el regId del registro en GCM!');} 
+        } */
+        </script> 
+    </body> 
+</html>

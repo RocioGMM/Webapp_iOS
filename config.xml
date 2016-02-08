@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="" version="" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" >
+	<name>PocketPhone</name>
+	<description>Tu nuevo directorio telefonico.</description>
+	<author email="info@napplex.com" href="http://napplex.com">Napplex</author>
+	<feature name="http://api.phonegap.com/1.0/device"/>
+	<feature name="debug-server" required="false" />
+
+	<feature name="NetworkStatus">
+	    <param name="ios-package" value="CDVConnection" />
+	</feature>
+
+
+	<preference name='phonegap-version' value='3.7.0' />
+	<preference name="orientation" value="portrait" />
+	<preference name="DisallowOverscroll" value="true" />
+	<preference name="LoadUrlTimeoutValue" value="99999999"/>
+	<preference name="SplashScreenDelay" value="0" />
+	<preference name="show-splash-screen-spinner" value="true" />
+	<preference name="StatusBarOverlaysWebView" value="false" />
+	<preference name="StatusBarBackgroundColor" value="#000000" />
+	<preference name="StatusBarStyle" value="lightcontent" />
+
+	<gap:plugin name="org.apache.cordova.network-information" spec="0.2.7" source="pgb" />
+	
+	<gap:plugin name="org.li8.inappbrowser" version="0.1" />
+	<gap:plugin name="de.appplant.cordova.plugin.local-notification" version="0.8.1" />
+	<!--<gap:plugin name="com.badrit.backbutton" version="0.1.0" />-->
+	<gap:plugin name="com.simplec.plugins.network" version="0.1.0" />
+	
+
+	<gap:plugin name="com.phonegap.plugins.facebookconnect" spec="0.9.0" source="pgb">
+	    <param name="APP_ID" value="" />
+	    <param name="APP_NAME" value="" />
+	</gap:plugin>
+	
+	<gap:plugin name="com.phonegap.plugins.pushplugin" version="2.5.0" />
+	<!--<gap:plugin name="com.pushapps.phonegap" version="1.7.1" />-->
+
+
+	<gap:plugin name="com.ionic.keyboard" version="1.0.3" />
+	<gap:plugin name="de.appplant.cordova.plugin.email-composer" version="0.8.2" />
+	<gap:plugin name="com.millerjames01.sqlite-plugin" version="1.0.1" />
+	<gap:plugin name="cc.fovea.plugins.inapppurchase" version="3.4.0" />
+	<gap:plugin name="com.ququplay.websocket.websocket" version="0.1.0" />
+	<gap:plugin name="dk.interface.cordova.plugin.googlenavigate" version="0.1.2" />
+	<gap:plugin name="fi.avaus.cordova.geolocation" version="0.3.11" />
+	<gap:plugin name="com.telerik.plugins.nativepagetransitions" version="0.2.2" />
+	
+	<gap:plugin name="com.sample.phonecalltrap" version="0.0.1" />
+	<gap:plugin name="com.simonmacdonald.telephonenumber" version="1.0.0" />
+
+	<gap:plugin name="com.vliesaputra.deviceinformation" version="1.0.1" />
+	<gap:plugin name="hu.dpal.phonegap.plugins.uniquedeviceid" version="1.2.0" />
+
+	<gap:plugin name="com.jaeger.html5video" version="1.2.1" />
+	<gap:plugin name="com.dawsonloudon.videoplayer" version="1.0.0" />
+
+	<access origin="tel:*" launch-external="yes" />
+	<access origin="mailto:*" launch-external="yes" />
+
+	<access origin="http://*/*" launch-external="yes" />
+	<access origin="https://*/*" launch-external="yes" />
+	<access origin="sms:*" launch-external="yes" />
+	<access origin="geo:*" launch-external="yes" />
+	<access origin="fb://*" launch-external="yes" />
+	<access origin="twitter:*" launch-external="yes" />
+
+
+	<access origin="http://pocketphone.com.mx/*" />
+	
+	<icon src="images/ic_launcher.png" />
+
+
+
+<!-- iPad -->
+<icon src="res/drawable-hdpi/ic_launcher.png" gap:platform="ios" width="72" height="72" />
+<icon src="res/drawable-hdpi/ic_launcher.png" gap:platform="ios" width="144" height="144" />
+
+
+
+<icon src="res/drawable-ldpi/ic_launcher.png" gap:platform="ios" width="36" height="36" />
+<icon src="res/drawable-mdpi/ic_launcher.png" gap:platform="ios" width="48" height="48" />
+<icon src="res/drawable-xhdpi/ic_launcher.png" gap:platform="ios" width="96" height="96" />
+<icon src="res/drawable-xxhdpi/ic_launcher.png" gap:platform="ios" width="144" height="144" />
+<icon src="res/drawable-xxxhdpi/ic_launcher.png" gap:platform="ios" width="152" height="152" />
+<icon src="res/drawable-xxxhdpi/ic_launcher.png" gap:platform="ios" width="192" height="192" />
+ 
+<icon src="res/ic_launcher57.png" gap:platform="ios" width="57" height="57" />
+<icon src="res/ic_launcher120.png" gap:platform="ios" width="120" height="120" />
+<icon src="res/ic_launcher76.png" gap:platform="ios" width="76" height="76" />
+      
+    <!-- Define app splash screen for each platform. -->
+    <gap:splash src="images/screen/android/screen-ldpi-portrait.png"       gap:platform="android" gap:qualifier="port-ldpi" />
+    <gap:splash src="images/screen/android/screen-mdpi-portrait.png"       gap:platform="android" gap:qualifier="port-mdpi" />
+    <gap:splash src="images/screen/android/screen-hdpi-portrait.png"       gap:platform="android" gap:qualifier="port-hdpi" />
+    <gap:splash src="images/screen/android/screen-xhdpi-portrait.png"      gap:platform="android" gap:qualifier="port-xhdpi" />
+    <gap:splash src="images/screen/blackberry/screen-225.png"              gap:platform="blackberry" />
+    <gap:splash src="images/screen/ios/screen-iphone-portrait.png"         gap:platform="ios"     width="320" height="480" />
+    <gap:splash src="images/screen/ios/screen-iphone-portrait-2x.png"      gap:platform="ios"     width="640" height="960" />
+    <gap:splash src="images/screen/ios/screen-iphone-portrait-568h-2x.png" gap:platform="ios"     width="640" height="1136" />
+    <gap:splash src="images/screen/ios/screen-ipad-portrait.png"           gap:platform="ios"     width="768" height="1024" />
+    <gap:splash src="images/screen/ios/screen-ipad-landscape.png"          gap:platform="ios"     width="1024" height="768" />
+    <gap:splash src="images/screen/windows-phone/screen-portrait.jpg"      gap:platform="winphone" />
+	<content src="index.html" />
+
+
+	
+</widget>
